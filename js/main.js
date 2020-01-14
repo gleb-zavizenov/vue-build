@@ -1,5 +1,7 @@
 // todo => use a key to track the current video, or just pass the video in as a ref to the function and grab its source
 
+
+
 var vm = new Vue({
   el: "#app",
 
@@ -20,6 +22,10 @@ var vm = new Vue({
       { name: "Marvel's The Avengers", thumb: "avengers.jpg", vidsource: "avengers.mp4", description: "will they make black widow action figures this time?" }
     ],
 
+    videotitle: "video title goes here",
+    videodescription: "description",
+    videosource: "",
+
     showDetails: false
   },
 
@@ -30,19 +36,14 @@ var vm = new Vue({
 
     setUserPrefs(){
       console.log("Open user preferences!");
+    },
+
+    loadMovie({name, description, vidsource}){
+      this.videotitle = name;
+      this.videodescription = description;
+      this.videosource = vidsource;
+
+      this.showDetails = true;
     }
   }
 });
-
-Vue.component('movie-post', {
-  props: ['image', 'name', 'description'],
-  template: `
-  <li>
-    <a>
-      <img v-bind:src="'images/' + movie.thumb" :alt="movie.name">
-      <h2>{{movie.name}}</h2>
-      <p>{{movie.description}}</p>
-    </a>
-  </li>
-  `
-})
