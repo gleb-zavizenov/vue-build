@@ -8,12 +8,7 @@ var vm = new Vue({
   data: {
 
     // mock up the user - this well eventually come from the database UMS (user management system)
-    user: {
-      isAdmin: "True",
-      name: "Anime boi",
-      avatar: "thor.png",
-      isLoggedIn: true
-    },
+    user: {},
 
     // this data would also come from the database, but we'll just mock it up for now
     videodata: [
@@ -27,6 +22,11 @@ var vm = new Vue({
     videosource: "",
 
     showDetails: false
+  },
+
+  created: function() {
+    console.log('Created lifecycle hook fired');
+    this.fetchUsers();
   },
 
   methods: {
@@ -44,6 +44,20 @@ var vm = new Vue({
       this.videosource = vidsource;
 
       this.showDetails = true;
+    },
+
+    fetchUsers(){
+      // get our user data here
+      console.log('fetch user data here');
+      const url = './includes/index.php?user=true';
+      fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        this.user = data[0];
+        console.log(this.user);
+      })
+      .catch((err) => console.log(err))
     }
   }
 });
