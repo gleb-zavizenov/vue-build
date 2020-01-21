@@ -20,8 +20,10 @@
         <ul>
           <!-- avatar / user icon-->
           <!-- if the user has an avatar, show it -->
-          <li v-if="user.avatar && user.isLoggedIn">
+          <!-- <li v-if="user.avatar && user.isLoggedIn"> -->
+          <li>
             <img :src="'images/' + user.avatar" alt="user avatar" class="u-avatar">
+            <span>{{user.fname}}</span>
           </li>
 
           <!-- else show this -->
