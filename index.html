@@ -48,13 +48,18 @@
     </header>
 
     <ul class="video-poster-wrapper" >
-      <li v-for="movie in videodata">
+      <poster v-for="(movie, index) in videodata" v-on:make-selection="loadMovie(movie)"
+      :name="movie.name"
+      :thumb="movie.thumb"
+      :vidsource="movie.vidsource"
+      :key="index">
+      </poster>
+      <!-- <li v-for="movie in videodata">
         <a :class="movie.name" @click.prevent="loadMovie(movie)">
           <img v-bind:src="'images/' + movie.thumb" :alt="movie.name">
           <h2>{{movie.name}}</h2>
-          <p>{{movie.description}}</p>
         </a>
-      </li>
+      </li> -->
     </ul>
 
     <p class="instructions">
